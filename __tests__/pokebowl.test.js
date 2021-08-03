@@ -30,7 +30,7 @@ describe('pokebowl routes', () => {
       sauce: 'soy sauce'
     });
 
-    const res = await request(app).get(`/api/v1/bunnies/${pokebowl.id}`);
+    const res = await request(app).get(`/api/v1/pokebowls/${pokebowl.id}`);
 
     expect(res.body).toEqual(pokebowl);
   });
