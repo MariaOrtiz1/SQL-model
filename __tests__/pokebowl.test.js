@@ -21,8 +21,8 @@ describe('pokebowl routes', () => {
     });
   });
 
-  it('gets a poke order by id via GET', async () => {
-    const pokebowl = await Pokebowl.insert({
+  it('gets a pokebowl order by id via GET', async () => {
+    const pokebowlOrder = await Pokebowl.insert({
       base: 'half sushi rice, half greens',
       proteinChoice: 'tofu',
       proteinAddition: '',
@@ -30,8 +30,8 @@ describe('pokebowl routes', () => {
       sauce: 'soy sauce'
     });
 
-    const res = await request(app).get(`/api/v1/pokebowls/${pokebowl.id}`);
+    const res = await request(app).get(`/api/v1/pokebowls/${pokebowlOrder.id}`);
 
-    expect(res.body).toEqual(pokebowl);
+    expect(res.body).toEqual(pokebowlOrder);
   });
 });
