@@ -2,7 +2,7 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
-import Pokebowl from '../lib/models/Pokebowl.js';
+// import Pokebowl from '../lib/models/Pokebowl.js';
 
 describe('pokebowl routes', () => {
   beforeEach(() => {
