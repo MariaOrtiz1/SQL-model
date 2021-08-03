@@ -20,4 +20,18 @@ describe('pokebowl routes', () => {
       ...pokebowl
     });
   });
+
+  it('gets a poke order by id via GET', async () => {
+    const pokebowl = await Pokebowl.insert({
+      base: 'half sushi rice, half greens',
+      proteinChoice: 'tofu',
+      proteinAddition: '',
+      toppings: 'green onions',
+      sauce: 'soy sauce'
+    });
+
+    const res = await request(app).get(`/api/v1/bunnies/${pokebowl.id}`);
+
+    expect(res.body).toEqual(pokebowl);
+  });
 });
