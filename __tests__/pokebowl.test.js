@@ -2,7 +2,7 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
-// import Pokebowl from '../lib/models/Pokebowl.js';
+import Pokebowl from '../lib/models/Pokebowl.js';
 
 describe('pokebowl routes', () => {
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('pokebowl routes', () => {
   });
 
   it('creates an order for a pokebowl via POST', async () => {
-    const pokebowl = { base: 'white sushi rice', protein: 'salmon', proteinAddition: 'tofu', toppings: '', sauce: 'poke sauce' };
+    const pokebowl = { base: 'white sushi rice', proteinChoice: 'salmon', proteinAddition: 'tofu', toppings: '', sauce: 'poke sauce' };
     const res = await request(app)
       .post('/api/v1/pokebowls')
       .send(pokebowl);
