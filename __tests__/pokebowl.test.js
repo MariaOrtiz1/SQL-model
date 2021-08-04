@@ -56,4 +56,20 @@ describe('pokebowl routes', () => {
 
     expect(res.body).toEqual([pokebowlOrderOne, pokebowlOrderTwo]);
   });
+
+  it('updates a pokebowl by id via PUT', async () => {
+    const pokebowl = await Pokebowl.insert({
+      base: 'white sushi rice',
+      proteinChoice: 'tuna',
+      proteinAddition: 'salmon',
+      toppings: 'tobiko',
+      sauce: ''
+    });
+
+    const res = await request(app)
+      .put(`/api/v1/pokebowls/${pokebowl.id}`)
+      .send({ sauce: 'spicy mayo' });
+
+    expect(res.body).toEqual({ ...pokebowl, sauce: 'spicy mayo' });
+  });
 });
