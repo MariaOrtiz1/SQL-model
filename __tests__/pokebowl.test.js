@@ -34,4 +34,26 @@ describe('pokebowl routes', () => {
 
     expect(res.body).toEqual(pokebowlOrder);
   });
+
+  it('gets all pokebowl orders via GET', async () => {
+    const pokebowlOrderOne = await Pokebowl.insert({
+      base: 'half sushi rice, half greens',
+      proteinChoice: 'tofu',
+      proteinAddition: '',
+      toppings: 'green onions',
+      sauce: 'soy sauce'
+    });
+
+    const pokebowlOrderTwo = await Pokebowl.insert({ base: 'white sushi rice',
+      proteinChoice: 'salmon', 
+      proteinAddition: 'tofu', 
+      toppings: '', 
+      sauce: 'poke sauce' 
+    });
+
+    const res = await request(app)
+      .get('/api/v1/pokebowls');
+
+    expect(res.body).toEqual([pokebowlOrderOne, pokebowlOrderTwo]);
+  });
 });
