@@ -78,7 +78,7 @@ describe('pokebowl routes', () => {
       .delete(`/api/v1/pokebowls/${pokebowl.id}`);
 
     expect(res.body).toEqual({ 
-      message: 'pokebowl order has been deleted!'
+      message: `${pokebowl.base} order has been deleted!`
     });
   });
 });
