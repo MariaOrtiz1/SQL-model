@@ -58,18 +58,28 @@ describe('pokebowl routes', () => {
   });
 
   it('updates a pokebowl by id via PUT', async () => {
-    const pokebowl = await Pokebowl.insert({
-      base: 'white sushi rice',
-      proteinChoice: 'tuna',
-      proteinAddition: 'salmon',
-      toppings: 'tobiko',
-      sauce: ''
+    const pokebowlOrder = await Pokebowl.insert({ 
+      base: 'white sushi rice', proteinChoice: 'salmon', proteinAddition: 'tofu', toppings: 'tobiko', sauce: 'none' 
     });
 
     const res = await request(app)
-      .put(`/api/v1/pokebowls/${pokebowl.id}`)
+      .put(`/api/v1/pokebowls/${pokebowlOrder.id}`)
       .send({ sauce: 'spicy mayo' });
 
-    expect(res.body).toEqual({ ...pokebowl, sauce: 'spicy mayo' });
+    expect(res.body).toEqual({ ...pokebowlOrder, sauce: 'spicy mayo' });
+  });
+
+  it('deletes an existing pokebowl by id via DELETE', async () => {
+    const pokebowl = await Pokebowl.insert({ 
+      base: 'white sushi rice', proteinChoice: 'salmon', proteinAddition: 'tuna', toppings: 'tobiko', sauce: 'spicy mayo' 
+    });
+
+    const res = await request(app)
+      .delete(`/api/v1/pokebowls/${pokebowl.id}`);
+
+    expect(res.body).toEqual({ 
+      message: 'pokebowl order has been deleted!'
+    });
   });
 });
+
